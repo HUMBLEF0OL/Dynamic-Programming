@@ -33,17 +33,35 @@ class Solution {
         }
         return dp[n];
     }
+    public int spaceOptimizedTabulation(int n){
+        // base case:
+        if(n<=1)return n;
+        
+        int firstTerm = 0;
+        int secondTerm = 1;
+        
+        for(int i =2;i<=n;i++){
+            // the result of current `n` will be equal to the summation of previous 2 terms
+            int nextTerm = firstTerm+secondTerm;
+            // now update the first and second terms
+            firstTerm = secondTerm;
+            secondTerm = nextTerm;
+        }
+        return secondTerm;
+    }
     public int fib(int n) {
         // bruteforce recursive solution
         // int result = unoptimizedRecursion(n);
         
         // optimized recursion using memoization and dynamic programming
-        int dp[] = new int[n+1];
+        // int dp[] = new int[n+1];
         // int result = optimizedRecursion(n,dp);
         
         // optimization using tabulation and dynamic programming
-        int result = optimizedTabulation(n,dp);
+        // int result = optimizedTabulation(n,dp);
         
+        // space optimized using tabulatin and dynamic programming
+        int result = spaceOptimizedTabulation(n);
         
         
         return result;
