@@ -19,9 +19,21 @@ class Solution {
     }
     public int climbStairs(int n) {
         // return unoptimizedRecursion(n);
-        int dp[] = new int[n+1];
-        dp[0] = 1;
-        dp[1]=1;
-        return optimizedRecursion(n,dp);
+        // int dp[] = new int[n+1];
+        // dp[0] = 1;
+        // dp[1]=1;
+        // return optimizedRecursion(n,dp);
+        
+        // bottom-up approach with space optimization
+        int first = 1;
+        int second = 1;
+        
+        for(int i =2;i<=n;i++){
+            int currentAnswer = first+second;
+            first = second;
+            second = currentAnswer;
+        }
+        return second;
+        
     }
 }
